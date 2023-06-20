@@ -14,7 +14,7 @@ terraform {
 # S3 버킷 생성
 resource "aws_s3_bucket" "terraform_state" {
   bucket = var.bucket_name
-	force_destory = true
+	force_destroy = true
 }
 
 # 상태 파일의 전체 리비전 기록을 볼 수 있도록 버전 지정
