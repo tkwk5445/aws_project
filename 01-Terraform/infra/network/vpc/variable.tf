@@ -1,6 +1,6 @@
 # cidr
 variable "vpc_cidr" {
-    default = "10.1.0.0/16"
+    default = "10.10.0.0/16"
 }
 
 # 퍼블릭 서브넷
