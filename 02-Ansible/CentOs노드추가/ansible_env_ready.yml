@@ -2,8 +2,23 @@
 - name: Setup for the Ansible's Environment
   hosts: localhost
   gather_facts: no
-  
+
+# 자동으로 host파일에 node서버의 IP를 넣어줌 
   tasks:
+    - name: Add "/etc/ansible/hosts"
+      blockinfile:
+        path: /etc/ansible/hosts
+        block: |
+          [CentOS]
+          192.168.56.11
+          192.168.56.12
+          192.168.56.13
+    # ssh yum 설치해줌
+    - name: Install sshpass for Authentication
+      yum:
+        name: sshpass
+        state: present
+
     - name: Create vim env's directories & files
       shell: "{{ item }}"
       with_items:

@@ -19,7 +19,7 @@ resource "aws_security_group" "aws10-ssh-sg" {
   name        = "aws10_ssh_sg"
   description = "security group for ssh server"
   vpc_id      = data.terraform_remote_state.aws10_vpc.outputs.vpc_id
-                                              # ▲ 이름 지정 해서 이것만 바꿀수있음              
+                                                 # ▲ 이름 지정 해서 이것만 바꿀수있음              
 
 
   ingress {
