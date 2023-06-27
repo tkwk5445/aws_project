@@ -1,15 +1,20 @@
 ---
-- name: Install nginx on CentOS
+- name: Remove nginx on CentOS
   hosts: CentOS
   gather_facts: no
   become: yes
-
+  
   tasks:
-    - name: install epel-release
-      yum: name=epel-release state=latest
-    - name: install nginx web server
-      yum: name=nginx state=present
-    - name: upload default index.html for web server
-      get_url: url=https://www.nginx.com dest=/usr/share/nginx/html/ mode=0644
-    - name: start nginx web server
-      service: name=nginx state=started
+    - name: remove epel-release
+      yum: name=epel-release state=absent
+    - name: remove nginx web server
+      yum: name=nginx state=absent
+
+- name: Remove nginx on Ubuntu
+  hosts: Ubuntu
+  gather_facts: no
+  become: yes
+  
+  tasks:
+    - name: remove nginx
+      apt: pkg=nginx state=absent autoremove=yes
