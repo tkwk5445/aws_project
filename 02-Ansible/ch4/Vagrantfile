@@ -4,7 +4,7 @@
 Vagrant.configure("2") do |config|
   config.vm.boot_timeout = 1800 # 30 minutes
 #================#
-# CentOS Nodes  #
+# CentOS Nodes   #
 #================#
 
 # Ansible-Node01  
@@ -47,6 +47,51 @@ Vagrant.configure("2") do |config|
   end
 
 #================#
+# Ubuntu nodes   #
+#================#
+# Ansible-Node04
+  config.vm.define "ansible-node04" do |cfg|    
+    cfg.vm.box = "ubuntu/trusty64"             
+    cfg.vm.provider "virtualbox" do |vb|      
+      vb.name = "Ansible-Node04" 
+      vb.cpus = 2
+      vb.memory = 2048       
+    end
+    cfg.vm.host_name = "ansible-node04"  
+    cfg.vm.network "private_network", ip: "192.168.56.14" 
+    cfg.vm.network "forwarded_port", guest:22, host: 60014, auto_correct: true, id: "ssh"
+    cfg.vm.synced_folder "../data", "/vagrant", disabled: true
+  end
+
+# Ansible-Node05
+config.vm.define "ansible-node05" do |cfg|    
+  cfg.vm.box = "ubuntu/trusty64"             
+  cfg.vm.provider "virtualbox" do |vb|      
+    vb.name = "Ansible-Node05"  
+    vb.cpus = 2
+    vb.memory = 2048     
+  end
+  cfg.vm.host_name = "ansible-node05"  
+  cfg.vm.network "private_network", ip: "192.168.56.15" 
+  cfg.vm.network "forwarded_port", guest:22, host: 60015, auto_correct: true, id: "ssh"
+  cfg.vm.synced_folder "../data", "/vagrant", disabled: true
+end
+
+# Ansible-Node06
+config.vm.define "ansible-node06" do |cfg|    
+  cfg.vm.box = "ubuntu/trusty64"             
+  cfg.vm.provider "virtualbox" do |vb|      
+    vb.name = "Ansible-Node06"
+    vb.cpus = 2
+    vb.memory = 2048         
+  end
+  cfg.vm.host_name = "ansible-node06"  
+  cfg.vm.network "private_network", ip: "192.168.56.16" 
+  cfg.vm.network "forwarded_port", guest:22, host: 60016, auto_correct: true, id: "ssh"
+  cfg.vm.synced_folder "../data", "/vagrant", disabled: true
+end
+
+#================#
 # Ansible Server #
 #================#
   config.vm.define "ansible-server" do |cfg|    
@@ -63,6 +108,6 @@ Vagrant.configure("2") do |config|
     cfg.vm.provision "shell", inline: "yum install ansible -y"
     cfg.vm.provision "file", source: "ansible_env_ready.yml", destination: "ansible_env_ready.yml"
     cfg.vm.provision "shell", inline: "ansible-playbook ansible_env_ready.yml"
-    cfg.vm.provision "shell", path: "add_ssh_auth.sh", privileged: false
+    cfg.vm.provision "shell", path: "add_ssh_auth.sh", privileged: false    
   end
 end

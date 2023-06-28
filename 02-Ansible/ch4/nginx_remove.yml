@@ -16,5 +16,5 @@
   become: yes
   
   tasks:
-    - name: remove nginx
+    - name: remove epel-release
       apt: pkg=nginx state=absent autoremove=yes

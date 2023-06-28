@@ -1,6 +1,5 @@
-# ! /usr/bin/env/ bash
-# ~/.ssh/known_hosts에 ssh 키 값을 저장하는 목적
-#   -p :  password 자동으로 넣어주는 기능     -o strict~:  pingerprint 묻지마라는 뜻
+#! /usr/bin/env bash
+
 sshpass -p vagrant ssh -T -o StrictHostKeyChecking=no vagrant@192.168.56.11
 sshpass -p vagrant ssh -T -o StrictHostKeyChecking=no vagrant@192.168.56.12
-sshpass -p vagrant ssh -T -o StrictHostKeyChecking=no vagrant@192.168.56.13
+sshpass -p vagrant ssh -T -o StrictHostKeyChecking=no vagrant@192.168.56.1302-Ansible/CentOS노드추가/add_ssh_auth.sh 02-Ansible/CentOS노드추가/ansible_env_ready.yml 02-Ansible/CentOS노드추가/bash_ssh_conf_4_CentOS.sh 02-Ansible/CentOS노드추가/nginx_install.yml 02-Ansible/CentOS노드추가/nginx_remove.yml 02-Ansible/CentOS노드추가/Vagrantfile

@@ -2,16 +2,14 @@
 - name: Setup for the Ansible's Environment
   hosts: localhost
   gather_facts: no
-
-# 자동으로 host파일에 node서버의 IP를 넣어줌 
+  
   tasks:
     - name: Add "/etc/ansible/hosts"
       blockinfile:
         path: /etc/ansible/hosts
         block: |
           [nodes]
-          192.168.[11:16]
-
+          192.168.56.[11:16]
     
     - name: Create vim env's directories & files
       shell: "{{ item }}"
